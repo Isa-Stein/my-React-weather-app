@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import Weather from "./Weather.js";
+import Weatherapp from "./Weatherapp.js";
 import Developertag from "./Developertag.js";
 
 function App() {
@@ -8,15 +8,8 @@ function App() {
     <div className="app">
       <div className="card">
         <div className="container">
-          <div className="row">
-            <img
-              src="my-app/src/imgs/DayTime.png"
-              className="card-image-top"
-              alt="Time of Day Visual"
-            />
-          </div>
-          <div className="row">
-            <Weather />
+          <div>
+            <Weatherapp />
           </div>
         </div>
       </div>
