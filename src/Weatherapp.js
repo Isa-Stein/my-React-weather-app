@@ -64,6 +64,7 @@ export default function Weather(props) {
     return (
       <div className="row">
         <Background />
+        <br />
         <p> To retrieve temperature please enter a city </p>
         {form}
       </div>

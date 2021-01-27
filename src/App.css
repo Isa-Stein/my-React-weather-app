@@ -1,7 +1,19 @@
 .app {
   margin: 20px;
+  background-color: lightcoral;
+}
+
+.card {
+  background-color: rgb(181, 216, 245);
+  margin: 20px auto;
+  max-width: 800px;
 }
 .container {
-  margin: 20px;
+  background-color: pink;
+  margin: 20px auto;
   height: 500px;
+}
+
+Developertag {
+  margin: 0 0 0 20px;
 }
