@@ -7,11 +7,7 @@ function App() {
   return (
     <div className="app">
       <div className="card">
-        <div className="container">
-          <div>
-            <Weatherapp />
-          </div>
-        </div>
+        <Weatherapp />
       </div>
       <Developertag />
     </div>

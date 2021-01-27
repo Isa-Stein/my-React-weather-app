@@ -42,7 +42,7 @@ export default function Weather(props) {
 
   if (loaded) {
     return (
-      <div>
+      <div className="container">
         <div className="row">
           <Background />
         </div>
@@ -62,11 +62,14 @@ export default function Weather(props) {
     );
   } else {
     return (
-      <div className="row">
-        <Background />
-        <br />
-        <p> To retrieve temperature please enter a city </p>
-        {form}
+      <div className="container">
+        <div className="row">
+          <Background />
+        </div>
+        <div className="row">
+          <p> To retrieve temperature please enter a city </p>
+        </div>
+        <div className="row">{form}</div>
       </div>
     );
   }
