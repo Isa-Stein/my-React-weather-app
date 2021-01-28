@@ -7,7 +7,7 @@ form {
 }
 
 .container {
-  background-color: pink;
   margin: 20px auto;
   height: 500px;
+  max-width: 725px;
 }

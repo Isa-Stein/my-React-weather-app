@@ -37,27 +37,48 @@ export default function Weather(props) {
         onChange={logInput}
       />
       <input type="submit" className="btn btn-outline-info" value="Search" />
+      <input
+        type="submit"
+        className="btn btn-outline-info"
+        value="Current City"
+      />
     </form>
   );
 
   if (loaded) {
     return (
       <div className="container">
-        <div className="row">
-          <Background />
-        </div>
-        <div className="row">
-          <p>
-            Displaying information for: {weatherData.city}
-            <br />
-            Temperature: {weatherData.temp} <a href="/"> °C </a>{" "}
-            <a href="/">°F </a>
-          </p>
-          <div className="row">{form}</div>
+        <header>
           <div className="row">
-            <Forecast />
+            <Background />
           </div>
-        </div>
+        </header>
+        <main>
+          <div className="row">
+            <p>
+              Displaying information for: {weatherData.city}
+              <br />
+              Temperature: {weatherData.temp} <a href="/"> °C </a>{" "}
+              <a href="/">°F </a>
+            </p>
+          </div>
+          <div className="row">{form}</div>
+          <br />
+          <div className="row">
+            <div className="col-3">
+              <Forecast />
+            </div>
+            <div className="col-3">
+              <Forecast />
+            </div>
+            <div className="col-3">
+              <Forecast />
+            </div>
+            <div className="col-3">
+              <Forecast />
+            </div>
+          </div>
+        </main>
       </div>
     );
   } else {
