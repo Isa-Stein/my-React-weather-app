@@ -30,28 +30,27 @@ export default function Weather(props) {
       windSpeed: Math.round(response.data.wind.speed),
       date: response.data.main.dt,
       img: "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
-      imgDesc: "Cloudy",
+      imgDesc: response.data.weather[0].description,
     });
   }
 
   let form = (
-    <div className="row">
-      <form onSubmit={manageSearch}>
-        <input
-          type="search"
-          className="form-control"
-          placeholder="Enter a city to search"
-          autoFocus="on"
-          onChange={logInput}
-        />
-        <input type="submit" className="btn btn-outline-info" value="Search" />
-        <input
-          type="submit"
-          className="btn btn-outline-info"
-          value="Current City"
-        />
-      </form>
-    </div>
+    <form className="form" onSubmit={manageSearch}>
+      <input
+        type="search"
+        className="form-control"
+        placeholder="Enter a city to search"
+        autoFocus="on"
+        autoComplete="off"
+        onChange={logInput}
+      />
+      <input type="submit" className="btn btn-outline-info" value="Search" />
+      <input
+        type="submit"
+        className="btn btn-outline-info"
+        value="Current City"
+      />
+    </form>
   );
 
   if (loaded) {
@@ -59,21 +58,23 @@ export default function Weather(props) {
       <div className="container">
         <header>
           <div className="row">
-            <Background />
+            <Background load={loaded} />
           </div>
         </header>
         <main>
-          <div className="row">
+          <div className="row post-load">
             <div className="col-8">
-              Displaying information for: <h1>{weatherData.city}</h1>
-              <br />
-              Temperature: {weatherData.temperature} <a href="/"> °C </a>
-              <a href="/">°F </a>
-              <br />
-              Wind Speed: {weatherData.windSpeed} <span> m/s </span>
-              <br />
-              Humidity : {weatherData.humidity} %
+              <h1>{weatherData.city}</h1>
+              <h2>
+                Temperature: {weatherData.temperature} <a href="/"> °C </a>
+                <a href="/">°F </a>
+                <br />
+                Wind Speed: {weatherData.windSpeed} <span> m/s </span>
+                <br />
+                Humidity : {weatherData.humidity} %
+              </h2>
             </div>
+
             <div className="col-4">
               <img
                 src={weatherData.img}
@@ -108,8 +109,8 @@ export default function Weather(props) {
         <div className="row">
           <Background />
         </div>
-        <div className="row">
-          <p> To retrieve temperature information please enter a city </p>
+        <div className="row pre-load">
+          <p>To retrieve temperature information please enter a city</p>
         </div>
         {form}
       </div>

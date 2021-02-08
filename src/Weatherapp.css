@@ -3,14 +3,27 @@
   display: inline-block;
 }
 
-form {
+form .form {
   display: inline;
   width: 400px;
   padding: 10px 0;
+  margin: 0 0 20px 0;
+}
+.pre-load {
+  margin: 50px 0 80px;
+  font-weight: 500;
+  color: black;
+  font-size: 28px;
+  opacity: 1;
+}
+
+.post-load {
+  margin: 0 0 35px;
 }
 
 form input {
   display: inline;
+  max-width: 70%;
 }
 
 .container {
@@ -19,18 +32,27 @@ form input {
   max-width: 725px;
 }
 
+main {
+  margin: 15px auto;
+}
+
 h1 {
   font-size: 40px;
   font-family: "Martel", serif;
   display: inline;
 }
 
-img .mainIcon {
+h2 {
+  font-size: 22px;
+  font-weight: 800px;
+  font-family: "Martel", serif;
+  margin-bottom: 0;
+}
+
+.mainIcon {
   display: block;
   margin: 0 auto;
   height: 150px;
-  position: relative;
-  top: -10px;
 }
 
 .weather-description {
