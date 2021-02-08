@@ -1,13 +1,42 @@
 .form-control {
   border-color: rgb(66, 163, 184);
+  display: inline-block;
 }
+
 form {
-  display: block;
+  display: inline;
   width: 400px;
+  padding: 10px 0;
+}
+
+form input {
+  display: inline;
 }
 
 .container {
   margin: 20px auto;
   height: 500px;
   max-width: 725px;
+}
+
+h1 {
+  font-size: 40px;
+  font-family: "Martel", serif;
+  display: inline;
+}
+
+img .mainIcon {
+  display: block;
+  margin: 0 auto;
+  height: 150px;
+  position: relative;
+  top: -10px;
+}
+
+.weather-description {
+  text-transform: capitalize;
+  font-family: "Dancing Script", cursive;
+  font-size: 25px;
+  display: block;
+  text-align: center;
 }

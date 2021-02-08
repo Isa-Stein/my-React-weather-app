@@ -29,6 +29,8 @@ export default function Weather(props) {
       humidity: response.data.main.humidity,
       windSpeed: Math.round(response.data.wind.speed),
       date: response.data.main.dt,
+      img: "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+      imgDesc: "Cloudy",
     });
   }
 
@@ -62,12 +64,24 @@ export default function Weather(props) {
         </header>
         <main>
           <div className="row">
-            <p>
-              Displaying information for: {weatherData.city}
+            <div className="col-8">
+              Displaying information for: <h1>{weatherData.city}</h1>
               <br />
-              Temperature: {weatherData.temp} <a href="/"> °C </a>{" "}
+              Temperature: {weatherData.temperature} <a href="/"> °C </a>
               <a href="/">°F </a>
-            </p>
+              <br />
+              Wind Speed: {weatherData.windSpeed} <span> m/s </span>
+              <br />
+              Humidity : {weatherData.humidity} %
+            </div>
+            <div className="col-4">
+              <img
+                src={weatherData.img}
+                alt={weatherData.imgDesc}
+                className="mainIcon"
+              />
+              <span className="weather-description">{weatherData.imgDesc}</span>
+            </div>
           </div>
           {form}
           <br />
