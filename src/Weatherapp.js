@@ -13,36 +13,43 @@ export default function Weather(props) {
     event.preventDefault();
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${input}&appid=14b4ec50bfdac6afc3e3c9dd658e26fe&units=metric`;
     axios.get(apiUrl).then(getData);
+    console.log(apiUrl);
   }
 
   function logInput(event) {
-    setLoaded(true);
     setInput(event.target.value);
   }
 
   function getData(response) {
+    setLoaded(true);
+    console.log(response);
     setweatherData({
       city: response.data.name,
-      tem: Math.round(response.data.main.temp),
+      temperature: Math.round(response.data.main.temp),
+      humidity: response.data.main.humidity,
+      windSpeed: Math.round(response.data.wind.speed),
+      date: response.data.main.dt,
     });
   }
 
   let form = (
-    <form onSubmit={manageSearch}>
-      <input
-        type="search"
-        className="form-control"
-        placeholder="Enter a city to search"
-        autoFocus="on"
-        onChange={logInput}
-      />
-      <input type="submit" className="btn btn-outline-info" value="Search" />
-      <input
-        type="submit"
-        className="btn btn-outline-info"
-        value="Current City"
-      />
-    </form>
+    <div className="row">
+      <form onSubmit={manageSearch}>
+        <input
+          type="search"
+          className="form-control"
+          placeholder="Enter a city to search"
+          autoFocus="on"
+          onChange={logInput}
+        />
+        <input type="submit" className="btn btn-outline-info" value="Search" />
+        <input
+          type="submit"
+          className="btn btn-outline-info"
+          value="Current City"
+        />
+      </form>
+    </div>
   );
 
   if (loaded) {
@@ -62,7 +69,7 @@ export default function Weather(props) {
               <a href="/">°F </a>
             </p>
           </div>
-          <div className="row">{form}</div>
+          {form}
           <br />
           <div className="row">
             <div className="col-3">
@@ -88,9 +95,9 @@ export default function Weather(props) {
           <Background />
         </div>
         <div className="row">
-          <p> To retrieve temperature please enter a city </p>
+          <p> To retrieve temperature information please enter a city </p>
         </div>
-        <div className="row">{form}</div>
+        {form}
       </div>
     );
   }
