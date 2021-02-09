@@ -1,25 +1,26 @@
 .form-control {
   border-color: rgb(66, 163, 184);
   display: inline-block;
+  position: relative;
+  top: 2px;
 }
 
 form .form {
   display: inline;
   width: 400px;
   padding: 10px 0;
-  margin: 0 0 20px 0;
 }
 .pre-load {
-  margin: 50px 0 80px;
+  margin: 25px 0 50px;
   font-weight: 500;
   color: black;
   font-size: 28px;
   opacity: 1;
 }
 
-.post-load {
+/* .post-load {
   margin: 0 0 35px;
-}
+} */
 
 form input {
   display: inline;
@@ -28,7 +29,7 @@ form input {
 
 .container {
   margin: 20px auto;
-  height: 500px;
+  /* height: 500px; */
   max-width: 725px;
 }
 
@@ -52,7 +53,7 @@ h2 {
 .mainIcon {
   display: block;
   margin: 0 auto;
-  height: 150px;
+  height: 125px;
 }
 
 .weather-description {
@@ -61,4 +62,9 @@ h2 {
   font-size: 25px;
   display: block;
   text-align: center;
+}
+.tempUnits {
+  font-size: 16px;
+  position: relative;
+  top: -3px;
 }

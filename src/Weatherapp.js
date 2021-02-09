@@ -4,7 +4,7 @@ import "./Weatherapp.css";
 import Forecast from "./Forecast.js";
 import Background from "./Background.js";
 
-export default function Weather(props) {
+export default function Weather() {
   const [weatherData, setweatherData] = useState("null");
   const [loaded, setLoaded] = useState(false);
   const [input, setInput] = useState("null");
@@ -17,6 +17,7 @@ export default function Weather(props) {
   }
 
   function logInput(event) {
+    event.preventDefault();
     setInput(event.target.value);
   }
 
@@ -29,7 +30,8 @@ export default function Weather(props) {
       humidity: response.data.main.humidity,
       windSpeed: Math.round(response.data.wind.speed),
       date: response.data.main.dt,
-      img: "https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png",
+      img:
+        "https://openweathermap.org/img/wn/(response.data.weather[0].icon)d@2x.png",
       imgDesc: response.data.weather[0].description,
     });
   }
@@ -57,21 +59,26 @@ export default function Weather(props) {
     return (
       <div className="container">
         <header>
-          <div className="row">
-            <Background load={loaded} />
-          </div>
-        </header>
-        <main>
           <div className="row post-load">
             <div className="col-8">
               <h1>{weatherData.city}</h1>
               <h2>
-                Temperature: {weatherData.temperature} <a href="/"> °C </a>
-                <a href="/">°F </a>
+                Current Temperature: {weatherData.temperature}{" "}
+                <span className="tempUnits">
+                  <a href="/" className="celsius-link active">
+                    °C
+                  </a>{" "}
+                  |{" "}
+                  <a href="/" className="fahrenheit-link">
+                    °F
+                  </a>
+                </span>
                 <br />
                 Wind Speed: {weatherData.windSpeed} <span> m/s </span>
                 <br />
                 Humidity : {weatherData.humidity} %
+                <br />
+                {weatherData.date}
               </h2>
             </div>
 
@@ -84,6 +91,8 @@ export default function Weather(props) {
               <span className="weather-description">{weatherData.imgDesc}</span>
             </div>
           </div>
+        </header>
+        <main>
           {form}
           <br />
           <div className="row">
@@ -101,18 +110,31 @@ export default function Weather(props) {
             </div>
           </div>
         </main>
+        <footer>
+          <div className="row">
+            <Background load={loaded} />
+          </div>
+        </footer>
       </div>
     );
   } else {
     return (
       <div className="container">
+        <div className="row pre-load">
+          <p>
+            {" "}
+            Loading weather information ....
+            <br /> Please wait...
+          </p>
+        </div>
+        {form}
+        <br />
+        <br />
+        <br />
+        <br />
         <div className="row">
           <Background />
         </div>
-        <div className="row pre-load">
-          <p>To retrieve temperature information please enter a city</p>
-        </div>
-        {form}
       </div>
     );
   }

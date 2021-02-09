@@ -7,7 +7,7 @@ export default function Background(load) {
       <div>
         <img
           src="./DayTime.png"
-          className="card-image-top"
+          className="card-image-bottom"
           alt="Time of Day Visual"
         />
       </div>
@@ -17,7 +17,7 @@ export default function Background(load) {
       <div className="background">
         <img
           src="./DayTime.png"
-          className="card-image-top"
+          className="card-image-bottom"
           alt="Time of Day Visual"
         />
       </div>
