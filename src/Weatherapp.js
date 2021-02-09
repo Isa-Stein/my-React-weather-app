@@ -3,15 +3,17 @@ import axios from "axios";
 import "./Weatherapp.css";
 import Forecast from "./Forecast.js";
 import Background from "./Background.js";
+import TemperatureUnits from "./TemperatureUnits";
 
 export default function Weather() {
   const [weatherData, setweatherData] = useState("null");
   const [loaded, setLoaded] = useState(false);
   const [input, setInput] = useState("null");
+  const [units, setUnits] = useState("metric");
 
   function manageSearch(event) {
     event.preventDefault();
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${input}&appid=14b4ec50bfdac6afc3e3c9dd658e26fe&units=metric`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${input}&appid=14b4ec50bfdac6afc3e3c9dd658e26fe&units=${units}`;
     axios.get(apiUrl).then(getData);
     console.log(apiUrl);
   }
@@ -30,8 +32,7 @@ export default function Weather() {
       humidity: response.data.main.humidity,
       windSpeed: Math.round(response.data.wind.speed),
       date: response.data.main.dt,
-      img:
-        "https://openweathermap.org/img/wn/(response.data.weather[0].icon)d@2x.png",
+      img: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
       imgDesc: response.data.weather[0].description,
     });
   }
@@ -64,15 +65,7 @@ export default function Weather() {
               <h1>{weatherData.city}</h1>
               <h2>
                 Current Temperature: {weatherData.temperature}{" "}
-                <span className="tempUnits">
-                  <a href="/" className="celsius-link active">
-                    °C
-                  </a>{" "}
-                  |{" "}
-                  <a href="/" className="fahrenheit-link">
-                    °F
-                  </a>
-                </span>
+                <TemperatureUnits />
                 <br />
                 Wind Speed: {weatherData.windSpeed} <span> m/s </span>
                 <br />
