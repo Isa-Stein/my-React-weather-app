@@ -3,14 +3,10 @@ import React from "react";
 export default function TemperatureUnits() {
   function showCelsius(event) {
     event.preventDefault();
-    setUnits("metric");
-    manageSearch();
   }
 
   function showFahrenheit(event) {
     event.preventDefault();
-    setUnits("imperial");
-    manageSearch();
   }
 
   return (

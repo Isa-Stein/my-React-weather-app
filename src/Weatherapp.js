@@ -4,16 +4,16 @@ import "./Weatherapp.css";
 import Forecast from "./Forecast.js";
 import Background from "./Background.js";
 import TemperatureUnits from "./TemperatureUnits";
+import FormattedDate from "./FormattedDate";
 
 export default function Weather() {
   const [weatherData, setweatherData] = useState("null");
   const [loaded, setLoaded] = useState(false);
-  const [input, setInput] = useState("null");
-  const [units, setUnits] = useState("metric");
+  const [input, setInput] = useState("Florence");
 
   function manageSearch(event) {
     event.preventDefault();
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${input}&appid=14b4ec50bfdac6afc3e3c9dd658e26fe&units=${units}`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${input}&appid=14b4ec50bfdac6afc3e3c9dd658e26fe&units=metric`;
     axios.get(apiUrl).then(getData);
     console.log(apiUrl);
   }
@@ -31,7 +31,7 @@ export default function Weather() {
       temperature: Math.round(response.data.main.temp),
       humidity: response.data.main.humidity,
       windSpeed: Math.round(response.data.wind.speed),
-      date: response.data.main.dt,
+      date: new Date(response.data.dt * 1000),
       img: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
       imgDesc: response.data.weather[0].description,
     });
@@ -49,6 +49,7 @@ export default function Weather() {
       />
       <input type="submit" className="btn btn-outline-info" value="Search" />
       <input
+        starts
         type="submit"
         className="btn btn-outline-info"
         value="Current City"
@@ -71,7 +72,7 @@ export default function Weather() {
                 <br />
                 Humidity : {weatherData.humidity} %
                 <br />
-                {weatherData.date}
+                <FormattedDate date={weatherData.date} />
               </h2>
             </div>
 
