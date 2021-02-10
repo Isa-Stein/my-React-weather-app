@@ -1,7 +1,8 @@
 import React from "react";
 
 export default function FormattedDate(props) {
-  const weekdays = [
+  let dateobj = new Date(props.date);
+  let days = [
     "Sunday",
     "Monday",
     "Tuesday",
@@ -10,7 +11,19 @@ export default function FormattedDate(props) {
     "Friday",
     "Saturday",
   ];
-  const months = [
+  let weekDay = days[dateobj.getDay()];
+
+  let currentHour = dateobj.getHours();
+  if (currentHour < 10) {
+    currentHour = `0${currentHour}`;
+  }
+  let currentMinutes = dateobj.getMinutes();
+  if (currentMinutes < 10) {
+    currentMinutes = `0${currentMinutes}`;
+  }
+  let currentTime = `${currentHour}:${currentMinutes}`;
+
+  let months = [
     "January",
     "February",
     "March",
@@ -25,40 +38,31 @@ export default function FormattedDate(props) {
     "December",
   ];
 
-  let month = months[props.getMonth()];
-  let day = weekdays[props.getday()];
-  let dayDescription = "th";
-  if (day === 1) {
-    dayDescription = "st";
+  let currentDay = dateobj.getDate();
+  let currentMonth = months[dateobj.getMonth()];
+  let currentYear = dateobj.getFullYear();
+  let descriptor = "th";
+
+  if (currentDay === 1) {
+    descriptor = "st";
   } else {
-    if (day === 2) {
-      dayDescription = "nd";
+    if (currentDay === 2) {
+      descriptor = "nd";
     } else {
-      if (day === 3) {
-        dayDescription = "rd";
+      if (currentDay === 3) {
+        descriptor = "rd";
       } else {
-        dayDescription = "th";
+        descriptor = "th";
       }
     }
   }
-  let year = props.getFullYear();
-  let hour = props.getHours();
-  if (hour < 10) {
-    hour = `0${hour}`;
-  }
-  let currentMinutes = now.getMinutes();
-  if (currentMinutes < 10) {
-    currentMinutes = `0${currentMinutes}`;
-  }
-
-  let timeStamp = `${hour}:${currentMinutes}`;
 
   return (
     <div>
-      Today it is the {day}
-      {dayDescription} of {month} {year}
+      {weekDay}, {currentDay}
+      {descriptor} {currentMonth} {currentYear}
       <br />
-      Last update: {timeStamp}
+      Last update: {currentTime}
     </div>
   );
 }

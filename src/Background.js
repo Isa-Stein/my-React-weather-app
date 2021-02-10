@@ -1,7 +1,13 @@
 import React from "react";
 import "./Background.css";
 
-export default function Background(load) {
+export default function Background(load, date) {
+  let dateobj = new Date(date);
+  let currentHour = dateobj.getHours();
+  if (currentHour < 10) {
+    currentHour = `0${currentHour}`;
+  }
+
   if ((load = false)) {
     return (
       <div>
@@ -14,6 +20,7 @@ export default function Background(load) {
     );
   } else {
     return (
+      /* if  (hour is between 00 and 06 == Sunrise)*/
       <div className="background">
         <img
           src="./DayTime.png"

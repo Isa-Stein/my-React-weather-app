@@ -31,7 +31,7 @@ export default function Weather() {
       temperature: Math.round(response.data.main.temp),
       humidity: response.data.main.humidity,
       windSpeed: Math.round(response.data.wind.speed),
-      date: new Date(response.data.dt * 1000),
+      date: response.data.dt * 1000,
       img: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
       imgDesc: response.data.weather[0].description,
     });
@@ -106,7 +106,7 @@ export default function Weather() {
         </main>
         <footer>
           <div className="row">
-            <Background load={loaded} />
+            <Background load={loaded} date={weatherData.date} />
           </div>
         </footer>
       </div>
@@ -127,7 +127,7 @@ export default function Weather() {
         <br />
         <br />
         <div className="row">
-          <Background />
+          <Background load={loaded} date={weatherData.date} />
         </div>
       </div>
     );
