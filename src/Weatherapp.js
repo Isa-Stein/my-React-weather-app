@@ -105,7 +105,7 @@ export default function Weather() {
         </main>
         <footer>
           <div className="row">
-            <Background load={loaded} date={weatherData.date} />
+            <Background load={loaded} info={weatherData.date} />
           </div>
         </footer>
       </div>
@@ -126,7 +126,7 @@ export default function Weather() {
         <br />
         <br />
         <div className="row">
-          <Background load={loaded} date={weatherData.date} />
+          <Background load={loaded} info={weatherData.date} />
         </div>
       </div>
     );
