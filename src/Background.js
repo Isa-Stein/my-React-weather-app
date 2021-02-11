@@ -15,6 +15,7 @@ export default function Background(load, date) {
   } else {
     let dateobj = new Date(date);
     let currentHour = dateobj.getHours();
+    console.log(currentHour);
 
     if (currentHour >= 0 && currentHour <= 5) {
       return (
@@ -26,7 +27,7 @@ export default function Background(load, date) {
           />{" "}
         </div>
       );
-    } /* else {
+    } else {
       if (currentHour >= 6 && currentHour <= 11) {
         return (
           <div className="background">
@@ -62,6 +63,6 @@ export default function Background(load, date) {
           }
         }
       }
-    } */
+    }
   }
 }

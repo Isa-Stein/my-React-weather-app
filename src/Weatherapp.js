@@ -28,7 +28,7 @@ export default function Weather() {
     console.log(response);
     setweatherData({
       city: response.data.name,
-      temperature: Math.round(response.data.main.temp),
+      temperature: response.data.main.temp,
       humidity: response.data.main.humidity,
       windSpeed: Math.round(response.data.wind.speed),
       date: response.data.dt * 1000,
@@ -65,8 +65,7 @@ export default function Weather() {
             <div className="col-8">
               <h1>{weatherData.city}</h1>
               <h2>
-                Current Temperature: {weatherData.temperature}{" "}
-                <TemperatureUnits />
+                <TemperatureUnits temperature={weatherData.temperature} />
                 <br />
                 Wind Speed: {weatherData.windSpeed} <span> m/s </span>
                 <br />
