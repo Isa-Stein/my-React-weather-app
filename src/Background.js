@@ -1,13 +1,12 @@
 import React from "react";
 import "./Background.css";
 
-export default function Background(load, info) {
-  console.log(info);
-  let dateobj = new Date(info);
+export default function Background(props) {
+  let dateobj = new Date(props.info);
   let currentHour = dateobj.getHours();
   console.log(currentHour);
 
-  if (load && currentHour >= 0 && currentHour <= 5) {
+  if (props.load && currentHour >= "0" && currentHour <= "5") {
     return (
       <div className="background">
         <img
@@ -17,7 +16,7 @@ export default function Background(load, info) {
         />{" "}
       </div>
     );
-  } else if (load && currentHour >= 6 && currentHour <= 11) {
+  } else if (props.load && currentHour >= "6" && currentHour <= "11") {
     return (
       <div className="background">
         <img
@@ -27,7 +26,7 @@ export default function Background(load, info) {
         />
       </div>
     );
-  } else if (load && currentHour >= 12 && currentHour <= 17) {
+  } else if (props.load && currentHour >= "12" && currentHour <= "17") {
     return (
       <div className="background">
         <img
@@ -37,7 +36,7 @@ export default function Background(load, info) {
         />
       </div>
     );
-  } else if (load && currentHour >= 18 && currentHour <= 23) {
+  } else if (props.load && currentHour >= "18" && currentHour <= "23") {
     return (
       <div className="background">
         <img

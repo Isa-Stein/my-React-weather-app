@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="app">
       <div className="card">
-        <Weatherapp />
+        <Weatherapp defaultCity="Florence" />
       </div>
       <Developertag />
     </div>

@@ -6,16 +6,20 @@ import Background from "./Background.js";
 import TemperatureUnits from "./TemperatureUnits";
 import FormattedDate from "./FormattedDate";
 
-export default function Weather() {
+export default function Weather(props) {
   const [weatherData, setweatherData] = useState("null");
   const [loaded, setLoaded] = useState(false);
-  const [input, setInput] = useState("Florence");
+  const [input, setInput] = useState(props.defaultCity);
 
-  function manageSearch(event) {
-    event.preventDefault();
+  function search() {
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${input}&appid=14b4ec50bfdac6afc3e3c9dd658e26fe&units=metric`;
     axios.get(apiUrl).then(getData);
     console.log(apiUrl);
+  }
+
+  function manageSearch(event) {
+    event.preventDefault();
+    search();
   }
 
   function logInput(event) {
@@ -66,8 +70,7 @@ export default function Weather() {
               <h1>{weatherData.city}</h1>
               <h2>
                 <TemperatureUnits temperature={weatherData.temperature} />
-                <br />
-                Wind Speed: {weatherData.windSpeed} <span> m/s </span>
+                Wind Speed: {weatherData.windSpeed} <span> km/h </span>
                 <br />
                 Humidity : {weatherData.humidity} %
                 <br />
@@ -111,6 +114,7 @@ export default function Weather() {
       </div>
     );
   } else {
+    search();
     return (
       <div className="container">
         <div className="row pre-load">
