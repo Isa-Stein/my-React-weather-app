@@ -4,7 +4,6 @@ import "./Background.css";
 export default function Background(props) {
   let dateobj = new Date(props.info);
   let currentHour = dateobj.getHours();
-  console.log(currentHour);
 
   if (props.load && currentHour >= "0" && currentHour <= "5") {
     return (
