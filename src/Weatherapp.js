@@ -3,12 +3,11 @@ import axios from "axios";
 import "./Weatherapp.css";
 import Forecast from "./Forecast.js";
 import Background from "./Background.js";
-import TemperatureUnits from "./TemperatureUnits";
-import FormattedDate from "./FormattedDate";
+
+import WeatherInfo from "./WeatherInfo.js";
 
 export default function Weather(props) {
-  const [weatherData, setweatherData] = useState("null");
-  const [loaded, setLoaded] = useState(false);
+  const [weatherData, setweatherData] = useState({ loaded: false });
   const [input, setInput] = useState(props.defaultCity);
 
   function search() {
@@ -28,9 +27,8 @@ export default function Weather(props) {
   }
 
   function getData(response) {
-    setLoaded(true);
-    console.log(response);
     setweatherData({
+      loaded: true,
       city: response.data.name,
       temperature: response.data.main.temp,
       humidity: response.data.main.humidity,
@@ -61,32 +59,11 @@ export default function Weather(props) {
     </form>
   );
 
-  if (loaded) {
+  if (weatherData.loaded) {
     return (
       <div className="container">
         <header>
-          <div className="row post-load">
-            <div className="col-8">
-              <h1>{weatherData.city}</h1>
-              <h2>
-                <TemperatureUnits temperature={weatherData.temperature} />
-                Wind Speed: {weatherData.windSpeed} <span> km/h </span>
-                <br />
-                Humidity : {weatherData.humidity} %
-                <br />
-                <FormattedDate date={weatherData.date} />
-              </h2>
-            </div>
-
-            <div className="col-4">
-              <img
-                src={weatherData.img}
-                alt={weatherData.imgDesc}
-                className="mainIcon"
-              />
-              <span className="weather-description">{weatherData.imgDesc}</span>
-            </div>
-          </div>
+          <WeatherInfo data={weatherData} />
         </header>
         <main>
           {form}
@@ -108,7 +85,7 @@ export default function Weather(props) {
         </main>
         <footer>
           <div className="row">
-            <Background load={loaded} info={weatherData.date} />
+            <Background load={weatherData.loaded} info={weatherData.date} />
           </div>
         </footer>
       </div>
@@ -130,7 +107,7 @@ export default function Weather(props) {
         <br />
         <br />
         <div className="row">
-          <Background load={loaded} info={weatherData.date} />
+          <Background load={weatherData.loaded} info={weatherData.date} />
         </div>
       </div>
     );
