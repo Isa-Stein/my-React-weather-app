@@ -34,29 +34,52 @@ export default function Weather(props) {
       humidity: response.data.main.humidity,
       windSpeed: Math.round(response.data.wind.speed),
       date: response.data.dt * 1000,
-      img: `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+      img: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
       imgDesc: response.data.weather[0].description,
     });
   }
 
+  function sendCurrentCity(position) {
+    let lat = position.coords.latitude;
+    let long = position.coords.longitude;
+    console.log(lat);
+    console.log(long);
+    let apiKey = "14b4ec50bfdac6afc3e3c9dd658e26fe";
+    let units = "metric";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=${units}`;
+    console.log(apiUrl);
+    axios.get(apiUrl).then(getData);
+  }
+
+  function getCurrentCity(event) {
+    event.preventDefault();
+    navigator.geolocation.getCurrentPosition(sendCurrentCity);
+    console.log(navigator.geolocation);
+  }
+
   let form = (
-    <form className="form" onSubmit={manageSearch}>
-      <input
-        type="search"
-        className="form-control"
-        placeholder="Enter a city to search"
-        autoFocus="on"
-        autoComplete="off"
-        onChange={logInput}
-      />
-      <input type="submit" className="btn btn-outline-info" value="Search" />
-      <input
-        starts
-        type="submit"
-        className="btn btn-outline-info"
-        value="Current City"
-      />
-    </form>
+    <div>
+      <form className="form" onSubmit={manageSearch}>
+        <input
+          type="search"
+          className="form-control"
+          placeholder="Enter a city to search"
+          autoFocus="on"
+          autoComplete="off"
+          onChange={logInput}
+        />
+        <input type="submit" className="btn btn-outline-info" value="Search" />
+      </form>
+      <form className="current-city">
+        <input
+          starts
+          type="submit"
+          className="btn btn-outline-info"
+          value="Current City"
+          onClick={getCurrentCity}
+        />
+      </form>
+    </div>
   );
 
   if (weatherData.loaded) {
@@ -68,20 +91,7 @@ export default function Weather(props) {
         <main>
           {form}
           <br />
-          <div className="row">
-            <div className="col-3">
-              <Forecast />
-            </div>
-            <div className="col-3">
-              <Forecast />
-            </div>
-            <div className="col-3">
-              <Forecast />
-            </div>
-            <div className="col-3">
-              <Forecast />
-            </div>
-          </div>
+          <Forecast city="response.data.name" />
         </main>
         <footer>
           <div className="row">
