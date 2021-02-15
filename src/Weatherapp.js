@@ -37,6 +37,8 @@ export default function Weather(props) {
       img: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
       imgDesc: response.data.weather[0].description,
       country: response.data.sys.country,
+      longitude: response.data.coord.lon,
+      latitude: response.data.coord.lat,
     });
   }
 
@@ -87,7 +89,6 @@ export default function Weather(props) {
         </header>
         <main>
           {form}
-
           <p>
             {" "}
             <em>
@@ -106,7 +107,11 @@ export default function Weather(props) {
               divided by comma.
             </em>
           </p>
-          <Forecast city="response.data.name" />
+
+          <Forecast
+            longitude={weatherData.longitude}
+            latitude={weatherData.latitude}
+          />
         </main>
         <footer>
           <div className="row">
