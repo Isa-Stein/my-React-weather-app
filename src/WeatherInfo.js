@@ -8,7 +8,9 @@ export default function WeatherInfo(props) {
       {" "}
       <div className="row post-load">
         <div className="col-8">
-          <h1>{props.data.city}</h1>
+          <h1>
+            {props.data.city}, {props.data.country}
+          </h1>
           <h2>
             <TemperatureUnits temperature={props.data.temperature} />
             Wind Speed: {props.data.windSpeed} <span> km/h </span>

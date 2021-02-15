@@ -36,25 +36,22 @@ export default function Weather(props) {
       date: response.data.dt * 1000,
       img: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
       imgDesc: response.data.weather[0].description,
+      country: response.data.sys.country,
     });
   }
 
-  function sendCurrentCity(position) {
-    let lat = position.coords.latitude;
-    let long = position.coords.longitude;
-    console.log(lat);
-    console.log(long);
+  function sendCurrentCity(response) {
+    let lat = response.coords.latitude;
+    let long = response.coords.longitude;
     let apiKey = "14b4ec50bfdac6afc3e3c9dd658e26fe";
     let units = "metric";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=${units}`;
-    console.log(apiUrl);
     axios.get(apiUrl).then(getData);
   }
 
   function getCurrentCity(event) {
     event.preventDefault();
     navigator.geolocation.getCurrentPosition(sendCurrentCity);
-    console.log(navigator.geolocation);
   }
 
   let form = (
@@ -90,7 +87,25 @@ export default function Weather(props) {
         </header>
         <main>
           {form}
-          <br />
+
+          <p>
+            {" "}
+            <em>
+              <strong>Note</strong>: For accurate results please provide{" "}
+              <strong>
+                "City name,{" "}
+                <a
+                  href="https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  ISO 3166 country codes
+                </a>
+                "
+              </strong>{" "}
+              divided by comma.
+            </em>
+          </p>
           <Forecast city="response.data.name" />
         </main>
         <footer>

@@ -64,3 +64,8 @@ h2 {
   position: relative;
   top: -3px;
 }
+
+p {
+  font-size: 15px;
+  margin-top: 5px;
+}
