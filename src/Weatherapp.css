@@ -25,12 +25,11 @@ form input {
 
 .container {
   margin: 20px auto;
-  /* height: 500px; */
   max-width: 725px;
 }
 
 main {
-  margin: 15px auto;
+  margin: 15px auto 0;
 }
 
 h1 {
@@ -65,7 +64,7 @@ h2 {
   top: -3px;
 }
 
-p {
+.weatherNote {
   font-size: 15px;
   margin-top: 5px;
 }
