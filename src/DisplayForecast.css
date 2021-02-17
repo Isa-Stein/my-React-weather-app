@@ -1,0 +1,16 @@
+div .col-2 {
+  display: block;
+  margin: 0 auto;
+  padding: 0 5px;
+}
+
+.forecastText {
+  text-align: center;
+  font-size: 14px;
+  margin: 0;
+}
+
+.forecastTemp {
+  font-size: 17px;
+  line-height: 2em;
+}

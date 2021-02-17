@@ -89,12 +89,12 @@ export default function Weather(props) {
         </header>
         <main>
           {form}
-          <p>
+          <p className="weatherNote">
             {" "}
             <em>
               <strong>Note</strong>: For accurate results please provide{" "}
               <strong>
-                "City name,{" "}
+                "City name,
                 <a
                   href="https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes"
                   target="_blank"
@@ -107,7 +107,6 @@ export default function Weather(props) {
               divided by comma.
             </em>
           </p>
-
           <Forecast
             longitude={weatherData.longitude}
             latitude={weatherData.latitude}

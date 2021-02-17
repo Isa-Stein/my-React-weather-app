@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import DisplayForecast from "./DisplayForecast.js";
 
 export default function Forecast(props) {
   const [forecastData, setForecastData] = useState({ loaded: false });
@@ -16,28 +17,32 @@ export default function Forecast(props) {
     console.log(response);
     setForecastData({
       loaded: true,
-      date: new Date(response.data.daily[0].dt * 1000),
-      max: response.data.daily[0].temp.max,
-      min: response.data.daily[0].temp.min,
-      icon: response.data.daily[0].weather[0].icon,
+      day1: response.data.daily[0],
+      day2: response.data.daily[1],
+      day3: response.data.daily[2],
+      day4: response.data.daily[3],
+      day5: response.data.daily[4],
     });
-    console.log(forecastData.date);
+    console.log(forecastData.dt);
   }
 
   if (forecastData.loaded && props.lat === forecastData.lat) {
     return (
       <div className="row">
-        <div className="col-3">
-          <br /> Min/ Max <br /> Icon <br /> Hello There
+        <div className="col-2">
+          <DisplayForecast data={forecastData.day1} />
         </div>
-        <div className="col-3">
-          Min/ Max <br /> Icon <br /> Hello There
+        <div className="col-2">
+          <DisplayForecast data={forecastData.day2} />
         </div>
-        <div className="col-3">
-          Min/ Max <br /> Icon <br /> Hello There
+        <div className="col-2">
+          <DisplayForecast data={forecastData.day3} />
         </div>
-        <div className="col-3">
-          Min/ Max <br /> Icon <br /> Hello There
+        <div className="col-2">
+          <DisplayForecast data={forecastData.day4} />
+        </div>
+        <div className="col-2">
+          <DisplayForecast data={forecastData.day5} />
         </div>
       </div>
     );
