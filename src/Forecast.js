@@ -7,26 +7,27 @@ export default function Forecast(props) {
   let lat = props.latitude;
   let lon = props.longitude;
 
-  function getForecast() {
-    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=current,minutely,hourly,alerts&appid=14b4ec50bfdac6afc3e3c9dd658e26fe&units=metric`;
-    axios.get(apiUrl).then(showForecast);
-    console.log(apiUrl);
-  }
+  /*   function getForecast() { */
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=current,minutely,hourly,alerts&appid=14b4ec50bfdac6afc3e3c9dd658e26fe&units=metric`;
+  axios.get(apiUrl).then(showForecast);
+  /*  console.log(apiUrl);
+  } */
 
   function showForecast(response) {
     console.log(response);
     setForecastData({
       loaded: true,
+      latitude: response.data.lat,
       day1: response.data.daily[0],
       day2: response.data.daily[1],
       day3: response.data.daily[2],
       day4: response.data.daily[3],
       day5: response.data.daily[4],
     });
-    console.log(forecastData.dt);
+    console.log(forecastData.lat);
   }
 
-  if (forecastData.loaded && props.lat === forecastData.lat) {
+  if (forecastData.loaded && props.lat === forecastData.latitude) {
     return (
       <div className="row">
         <div className="col-2">
@@ -47,7 +48,6 @@ export default function Forecast(props) {
       </div>
     );
   } else {
-    getForecast();
     return <div> Loading Forecast...</div>;
   }
 }
