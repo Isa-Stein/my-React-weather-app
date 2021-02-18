@@ -3,9 +3,9 @@
 }
 
 .card {
-  background-color: rgb(247, 243, 255);
+  background-color: rgb(218, 208, 238);
   margin: 20px auto;
   max-width: 800px;
-  height: 640px;
+  height: 625px;
   padding: 10px 20px;
 }
