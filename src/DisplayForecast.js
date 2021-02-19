@@ -40,8 +40,20 @@ export default function DisplayForecast(props) {
     }
   }
 
-  let max = Math.round(props.data.temp.max);
-  let min = Math.round(props.data.temp.min);
+  let currentHour = dateobj.getHours();
+  if (currentHour < 10) {
+    currentHour = `0${currentHour}`;
+  }
+  let currentMinutes = dateobj.getMinutes();
+  if (currentMinutes < 10) {
+    currentMinutes = `0${currentMinutes}`;
+  }
+  let currentTime = `${currentHour}:${currentMinutes}`;
+
+  /* let max = Math.round(props.data.temp.max);
+  let min = Math.round(props.data.temp.min); */
+  let max = Math.round(props.data.main.temp_max);
+  let min = Math.round(props.data.main.temp_min);
   let icon = `https://openweathermap.org/img/wn/${props.data.weather[0].icon}@2x.png`;
   let imgDesc = props.data.weather[0].description;
 
@@ -51,6 +63,7 @@ export default function DisplayForecast(props) {
         {weekDay}, {currentDay}
         {descriptor} {""}
         {currentMonth} <br />
+        {currentTime}
         <span className="forecastTemp">
           {min} / <strong> {max}</strong> °C | °F
         </span>
