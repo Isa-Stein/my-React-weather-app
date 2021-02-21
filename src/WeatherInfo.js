@@ -12,7 +12,11 @@ export default function WeatherInfo(props) {
             {props.data.city}, {props.data.country}
           </h1>
           <h2>
-            <TemperatureUnits temperature={props.data.temperature} />
+            <TemperatureUnits
+              temperature={props.data.temperature}
+              units={props.units}
+              setUnits={props.setUnits}
+            />
             Wind Speed: {props.data.windSpeed} <span> km/h </span>
             <br />
             Humidity : {props.data.humidity} %

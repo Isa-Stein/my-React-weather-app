@@ -26,24 +26,14 @@ export default function Forecast(props) {
     console.log(forecastData.latitude);
   }
 
-  if (forecastData.loaded && props.lat === forecastData.latitude) {
+  if (forecastData.loaded && props.latitude === forecastData.latitude) {
     return (
       <div className="row">
-        <div className="col-2">
-          <DisplayForecast data={forecastData.day1} />
-        </div>
-        <div className="col-2">
-          <DisplayForecast data={forecastData.day2} />
-        </div>
-        <div className="col-2">
-          <DisplayForecast data={forecastData.day3} />
-        </div>
-        <div className="col-2">
-          <DisplayForecast data={forecastData.day4} />
-        </div>
-        <div className="col-2">
-          <DisplayForecast data={forecastData.day5} />
-        </div>
+        <DisplayForecast data={forecastData.day1} units={props.units} />
+        <DisplayForecast data={forecastData.day2} units={props.units} />
+        <DisplayForecast data={forecastData.day3} units={props.units} />
+        <DisplayForecast data={forecastData.day4} units={props.units} />
+        <DisplayForecast data={forecastData.day5} units={props.units} />
       </div>
     );
   } else {

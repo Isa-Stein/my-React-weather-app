@@ -3,12 +3,12 @@ import axios from "axios";
 import "./Weatherapp.css";
 import Forecast from "./Forecast.js";
 import Background from "./Background.js";
-
 import WeatherInfo from "./WeatherInfo.js";
 
 export default function Weather(props) {
   const [weatherData, setweatherData] = useState({ loaded: false });
   const [input, setInput] = useState(props.defaultCity);
+  let [unit, setUnit] = useState("celsius");
 
   function search() {
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${input}&appid=14b4ec50bfdac6afc3e3c9dd658e26fe&units=metric`;
@@ -85,7 +85,7 @@ export default function Weather(props) {
     return (
       <div className="container">
         <header>
-          <WeatherInfo data={weatherData} />
+          <WeatherInfo data={weatherData} unit={unit} setUnit={setUnit} />
         </header>
         <main>
           {form}
@@ -111,6 +111,7 @@ export default function Weather(props) {
           <Forecast
             longitude={weatherData.longitude}
             latitude={weatherData.latitude}
+            unit={unit}
           />
         </main>
         <footer>
