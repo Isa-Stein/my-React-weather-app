@@ -10,17 +10,6 @@ export default function Weather(props) {
   const [input, setInput] = useState(props.defaultCity);
   let [unit, setUnit] = useState("celsius");
 
-  function search() {
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${input}&appid=14b4ec50bfdac6afc3e3c9dd658e26fe&units=metric`;
-    axios.get(apiUrl).then(getData);
-    console.log(apiUrl);
-  }
-
-  function manageSearch(event) {
-    event.preventDefault();
-    search();
-  }
-
   function logInput(event) {
     event.preventDefault();
     setInput(event.target.value);
@@ -54,6 +43,17 @@ export default function Weather(props) {
   function getCurrentCity(event) {
     event.preventDefault();
     navigator.geolocation.getCurrentPosition(sendCurrentCity);
+  }
+
+  function search() {
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${input}&appid=14b4ec50bfdac6afc3e3c9dd658e26fe&units=metric`;
+    axios.get(apiUrl).then(getData);
+    console.log(apiUrl);
+  }
+
+  function manageSearch(event) {
+    event.preventDefault();
+    search();
   }
 
   let form = (
