@@ -61,10 +61,8 @@ export default function DisplayForecast(props) {
   let imgDesc = props.data.weather[0].description;
 
   if (props.units === "celsius") {
-    /* let max = Math.round(props.data.temp.max);
-  let min = Math.round(props.data.temp.min); */
-    let max = Math.round(props.data.main.temp_max);
-    let min = Math.round(props.data.main.temp_min);
+    let max = Math.round(props.data.temp.max);
+    let min = Math.round(props.data.temp.min);
     return (
       <div className="forecast col-2">
         <p className="forecastText">
@@ -78,10 +76,8 @@ export default function DisplayForecast(props) {
       </div>
     );
   } else {
-    /* let max = Math.round((props.data.temp.max* 9) / 5 + 32);
-  let min = Math.round((props.data.temp.min* 9) / 5 + 32); */
-    let max = Math.round((props.data.main.temp_max * 9) / 5 + 32);
-    let min = Math.round((props.data.main.temp_min * 9) / 5 + 32);
+    let max = Math.round((props.data.temp.max * 9) / 5 + 32);
+    let min = Math.round((props.data.temp.min * 9) / 5 + 32);
     return (
       <div className="forecast col-2">
         <p className="forecastText">
